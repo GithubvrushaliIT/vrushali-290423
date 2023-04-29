@@ -9,7 +9,19 @@
 			"name": "fetchAll",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers",
+						"all"
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +31,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/customers?firstName=aTHY",
+					"raw": "http://localhost:8080/customers?lastName=miT&firstName=john&mobileNumber=8988774655",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -30,8 +42,16 @@
 					],
 					"query": [
 						{
+							"key": "lastName",
+							"value": "miT"
+						},
+						{
 							"key": "firstName",
-							"value": "aTHY"
+							"value": "john"
+						},
+						{
+							"key": "mobileNumber",
+							"value": "8988774655"
 						}
 					]
 				}
@@ -122,7 +142,14 @@
 					"name": "createCustomer",
 					"originalRequest": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n \"firstName\":\"vrushali\",\r\n \"lastName\":\"Winchurkar\",\r\n \"mobileNumber\":9988778855\r\n}",

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExitException;
 import com.avisys.cim.dao.CustomerRepository;
 import com.avisys.cim.pojos.Customer;
 
@@ -32,7 +31,11 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (firstName != null && lastName != null && mobileNumber != null)
 
 			// with JPQL
-			return customerRepo.getAllParameter(firstName, lastName, mobileNumber);
+			// return customerRepo.getAllParameter(firstName, lastName, mobileNumber);
+
+			// with derived query
+			return customerRepo.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCaseAndMobileNumber(
+					firstName, lastName, mobileNumber);
 
 		// for fetching by mobileNumber
 		else if (mobileNumber != null && firstName == null && lastName == null)
@@ -50,15 +53,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	// create customer if mobile number is not present
-	public Customer createCustomer(Customer customer) {
-		// checking if the mobileNumber is already exit
-		if (!customerRepo.existsCustomerByMobileNumber(customer.getMobileNumber())) {
-			return customerRepo.save(customer);
-		}
-		// exception is thrown
-		else
-			throw new MobileNumberAlreadyExitException("Unable to create Customer. Mobile number already present.");
-
-	}
+	/*
+	 * public Customer createCustomer(Customer customer) { // checking if the
+	 * mobileNumber is already exit if
+	 * (!customerRepo.existsCustomerByMobileNumber(customer.getMobileNumber())) {
+	 * return customerRepo.save(customer); } // exception is thrown else throw new
+	 * MobileNumberAlreadyExitException("Unable to create Customer. Mobile number already present."
+	 * );
+	 * 
+	 * }
+	 */
 
 }

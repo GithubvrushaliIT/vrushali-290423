@@ -9,6 +9,6 @@ public interface ICustomerService {
 
 	public List<Customer> fetchByParameters(String firstName, String lastName, String mobileNumber);
 
-	public Customer createCustomer(Customer customer);
+	/* public Customer createCustomer(Customer customer); */
 
 }
