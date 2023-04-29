@@ -1,4 +1,4 @@
-package com.avisys.cim;
+package com.avisys.cim.pojos;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

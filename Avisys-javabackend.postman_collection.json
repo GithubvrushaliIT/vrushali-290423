@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "3b98ea03-b26f-4fa0-b8d1-154f77e13c5a",
+		"name": "Avisys-javabackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fetchAll",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "fetchByParameter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers?firstName=aTHY",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "aTHY"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "fetchByParameter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers?firstName=aTHY",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "aTHY"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Apr 2023 07:02:22 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 4,\n        \"firstName\": \"Kathy\",\n        \"lastName\": \"Sierra\",\n        \"mobileNumber\": \"9111111114\"\n    }\n]"
+				}
+			]
+		}
+	]
+}
