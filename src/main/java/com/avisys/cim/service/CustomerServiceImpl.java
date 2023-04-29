@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avisys.cim.custome_Exceptions.CustomerNotFoundException;
-import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExitException;
+import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExistsException;
 import com.avisys.cim.dao.CustomerRepository;
 import com.avisys.cim.pojos.Customer;
 
@@ -65,7 +65,8 @@ public class CustomerServiceImpl implements ICustomerService {
 		for (String mobNo : customer.getMobileNumber()) {
 			if (customerRepo.existsCustomerByMobileNumber(mobNo))
 				// exception thrown
-				throw new MobileNumberAlreadyExitException("Unable to create Customer. Mobile number already present.");
+				throw new MobileNumberAlreadyExistsException(
+						"Unable to create Customer. Mobile number already present.");
 		}
 
 		// adding customer to database
@@ -83,6 +84,38 @@ public class CustomerServiceImpl implements ICustomerService {
 		} else {
 			throw new CustomerNotFoundException("Customer with mobile number " + mobNo + " not found.");
 		}
+	}
+
+	// update mobile number
+	@Override
+	public Customer updateMobileNumber(String oldNo, String newNo) {
+		Customer customerToUpdate = customerRepo.findByMobileNumber(oldNo);
+
+		if (customerToUpdate == null)
+			throw new CustomerNotFoundException("Customer with mobile number not found.");
+
+		else if (customerRepo.existsCustomerByMobileNumber(newNo))
+			throw new MobileNumberAlreadyExistsException("Mobile number " + newNo + " already present.");
+
+		else
+			customerToUpdate.getMobileNumber().remove(oldNo);
+		customerToUpdate.getMobileNumber().add(newNo);
+
+		return customerRepo.save(customerToUpdate);
+	}
+
+	// delete mobile number
+	@Override
+	public Customer delMobileNumber(String mobNo) {
+		Customer customerToUpdate = customerRepo.findByMobileNumber(mobNo);
+
+		if (customerToUpdate == null)
+			throw new CustomerNotFoundException("Customer with mobile number not found.");
+
+		else
+			customerToUpdate.getMobileNumber().remove(mobNo);
+
+		return customerRepo.save(customerToUpdate);
 	}
 
 }

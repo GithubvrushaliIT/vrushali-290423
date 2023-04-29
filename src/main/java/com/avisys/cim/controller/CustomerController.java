@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avisys.cim.custome_Exceptions.CustomerNotFoundException;
-import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExitException;
+import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExistsException;
 import com.avisys.cim.pojos.Customer;
 import com.avisys.cim.service.ICustomerService;
 
@@ -45,7 +46,7 @@ public class CustomerController {
 
 		try {
 			return new ResponseEntity<>(customerService.createCustomer(customer), HttpStatus.CREATED);
-		} catch (MobileNumberAlreadyExitException e) {
+		} catch (MobileNumberAlreadyExistsException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -60,4 +61,24 @@ public class CustomerController {
 		}
 	}
 
+	@PatchMapping("/updateMobileNo/{oldNo}/{newNo}")
+	public ResponseEntity<?> updateMobileNumber(@PathVariable String oldNo, @PathVariable String newNo) {
+		try {
+			return new ResponseEntity<>(customerService.updateMobileNumber(oldNo, newNo), HttpStatus.OK);
+		} catch (CustomerNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		} catch (MobileNumberAlreadyExistsException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+
+	@PatchMapping("/delMobileNo/{mobNo}")
+	public ResponseEntity<?> delMobileNumber(@PathVariable String mobNo) {
+		try {
+			return new ResponseEntity<>(customerService.delMobileNumber(mobNo), HttpStatus.OK);
+		} catch (CustomerNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+	}
 }

@@ -260,6 +260,50 @@
 					"body": "Customer deleted successfully"
 				}
 			]
+		},
+		{
+			"name": "updateMobileNumber",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers/updateMobileNo/9988776655/1212121212",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers",
+						"updateMobileNo",
+						"9988776655",
+						"1212121212"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMobileNumber",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers/updateMobileNo/9988776655/1212121212",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers",
+						"updateMobileNo",
+						"9988776655",
+						"1212121212"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

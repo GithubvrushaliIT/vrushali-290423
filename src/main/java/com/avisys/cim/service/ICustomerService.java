@@ -13,4 +13,8 @@ public interface ICustomerService {
 
 	public void delCustomerByMobNo(String mobNo);
 
+	public Customer updateMobileNumber(String oldNo, String newNo);
+
+	public Customer delMobileNumber(String mobNo);
+
 }
