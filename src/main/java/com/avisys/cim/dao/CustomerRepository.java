@@ -32,4 +32,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	public List<Customer> findByLastNameContainingIgnoreCase(String lastName);
 
 	public List<Customer> findByMobileNumber(String mobileNumber);
+
+	// check if a mobileNumber is exist or not
+	boolean existsCustomerByMobileNumber(String mobileNumber);
 }
