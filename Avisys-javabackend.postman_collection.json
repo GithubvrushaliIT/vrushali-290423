@@ -117,7 +117,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n \"firstName\":\"vrushali\",\r\n \"lastName\":\"Winchurkar\",\r\n \"mobileNumber\":9988778855\r\n}",
+					"raw": "{\r\n \"firstName\":\"Sahil\",\r\n \"lastName\":\"Winchurkar\",\r\n \"mobileNumber\":[2234567890,2234567890]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
