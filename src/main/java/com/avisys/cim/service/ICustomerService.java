@@ -11,4 +11,6 @@ public interface ICustomerService {
 
 	public Customer createCustomer(Customer customer);
 
+	public void delCustomerByMobNo(String mobNo);
+
 }

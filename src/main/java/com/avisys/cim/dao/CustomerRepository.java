@@ -16,14 +16,14 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	// Data JPA query for find customers by firstname,lastname,mobilenumber
 
-	public List<Customer> findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCaseAndMobileNumber(
-			String firstName, String lastName, String mobileNumber);
+	public Customer findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCaseAndMobileNumber(String firstName,
+			String lastName, String mobileNumber);
 
 	public List<Customer> findByFirstNameContainingIgnoreCase(String firstName);
 
 	public List<Customer> findByLastNameContainingIgnoreCase(String lastName);
 
-	public List<Customer> findByMobileNumber(String mobileNumber);
+	public Customer findByMobileNumber(String mobileNumber);
 
 	// check if a mobileNumber is exist or not
 	boolean existsCustomerByMobileNumber(String mobileNumber);

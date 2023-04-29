@@ -63,7 +63,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customers?firstName=aTHY",
+							"raw": "http://localhost:8080/customers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -71,12 +71,6 @@
 							"port": "8080",
 							"path": [
 								"customers"
-							],
-							"query": [
-								{
-									"key": "firstName",
-									"value": "aTHY"
-								}
 							]
 						}
 					},
@@ -195,6 +189,75 @@
 					],
 					"cookie": [],
 					"body": "Unable to create Customer. Mobile number already present."
+				}
+			]
+		},
+		{
+			"name": "deleteCustomerByMobileNumber",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers/del/8988774655",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers",
+						"del",
+						"8988774655"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deleteCustomerByMobileNumber",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/del/8988774655",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"del",
+								"8988774655"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Apr 2023 18:45:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Customer deleted successfully"
 				}
 			]
 		}

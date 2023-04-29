@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avisys.cim.custome_Exceptions.CustomerNotFoundException;
 import com.avisys.cim.custome_Exceptions.MobileNumberAlreadyExitException;
 import com.avisys.cim.dao.CustomerRepository;
 import com.avisys.cim.pojos.Customer;
@@ -29,19 +30,23 @@ public class CustomerServiceImpl implements ICustomerService {
 
 		// for fetching by all parameters
 
-		if (firstName != null && lastName != null && mobileNumber != null)
+		if (firstName != null && lastName != null && mobileNumber != null) {
 
 			// with JPQL
 			// return customerRepo.getAllParameter(firstName, lastName, mobileNumber);
 
 			// with derived query
-			return customerRepo.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCaseAndMobileNumber(
-					firstName, lastName, mobileNumber);
+			Customer customer = customerRepo
+					.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCaseAndMobileNumber(firstName,
+							lastName, mobileNumber);
 
+			return List.of(customer);
+		}
 		// for fetching by mobileNumber
-		else if (mobileNumber != null && firstName == null && lastName == null)
-			return customerRepo.findByMobileNumber(mobileNumber);
-
+		else if (mobileNumber != null && firstName == null && lastName == null) {
+			Customer customer = customerRepo.findByMobileNumber(mobileNumber);
+			return List.of(customer);
+		}
 		// for fetching by firstName
 		else if (firstName != null && mobileNumber == null && lastName == null)
 			return customerRepo.findByFirstNameContainingIgnoreCase(firstName);
@@ -66,6 +71,18 @@ public class CustomerServiceImpl implements ICustomerService {
 		// adding customer to database
 		return customerRepo.save(customer);
 
+	}
+
+	// delete customer by mobileNumber
+	@Override
+	public void delCustomerByMobNo(String mobNo) {
+		Customer customerToDel = customerRepo.findByMobileNumber(mobNo);
+
+		if (customerToDel != null) {
+			customerRepo.delete(customerToDel);
+		} else {
+			throw new CustomerNotFoundException("Customer with mobile number " + mobNo + " not found.");
+		}
 	}
 
 }
